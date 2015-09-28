@@ -1,7 +1,6 @@
 package gonessie
 
 import (
-	"Go-Nessie/gomodels"
 	"crypto/tls"
 	"encoding/json"
 	"fmt"
@@ -45,9 +44,9 @@ func (r *NessieClient) SetKey(key string) {
 	r.ApiKey = "key=" + key
 }
 
-func (r *NessieClient) Account() gomodels.Accounts {
+func (r *NessieClient) Account() Accounts {
 	//account := &Account{id: "ayy"}
-	account := gomodels.Accounts{}
+	account := Accounts{}
 
 	fmt.Println(BaseUrl + "accounts?" + r.ApiKey)
 

@@ -1,4 +1,4 @@
-package gomodels
+package gonessie
 
 //Account model from Nessie
 type Account struct {

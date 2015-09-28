@@ -1,4 +1,4 @@
-package gomodels
+package gonessie
 
 type Atm struct {
 	id            string
