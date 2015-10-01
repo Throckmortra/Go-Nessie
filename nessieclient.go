@@ -13,11 +13,11 @@ import (
 var BaseUrl = "http://api.reimaginebanking.com/"
 
 type NessieClient struct {
-	client   *http.Client
-	apiKey   string
-	payLoad  io.Reader
-	response interface{}
-	raw      *http.Response
+	Client   *http.Client
+	APIKey   string
+	Payload  io.Reader
+	Response interface{}
+	Raw      *http.Response
 }
 
 func NesClient() *NessieClient {
@@ -41,20 +41,18 @@ func NesClient() *NessieClient {
 }
 
 func (r *NessieClient) SetKey(key string) {
-	r.apiKey = "key=" + key
+	r.APIKey = "key=" + key
 }
 
 func (r *NessieClient) Account() Accounts {
 	//account := &Account{id: "ayy"}
 	account := Accounts{}
 
-	fmt.Println(BaseUrl + "accounts?" + r.ApiKey)
+	fmt.Println(BaseUrl + "accounts?" + r.APIKey)
 
-	resp, err := r.client.Get(BaseUrl + "accounts?" + r.apiKey)
+	resp, err := r.Client.Get(BaseUrl + "accounts?" + r.APIKey)
 	if err != nil {
 		fmt.Println("error1: " + err.Error())
-	} else {
-		fmt.Println("Status: ayyy " + resp.Status)
 	}
 
 	contents, err := ioutil.ReadAll(resp.Body)
@@ -71,7 +69,7 @@ func (r *NessieClient) Account() Accounts {
 	fmt.Println("length of account array: " + string(len(account)))
 
 	//err = json.Unmarshal(test, &account)
-	fmt.Println("object id: " + account[1].GetNickname() + " " + account[1].Nickname)
+	fmt.Println("object id: " + account[1].Nickname + " " + account[1].Nickname)
 	defer resp.Body.Close()
 	return account
 }
