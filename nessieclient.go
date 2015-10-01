@@ -13,11 +13,11 @@ import (
 var BaseUrl = "http://api.reimaginebanking.com/"
 
 type NessieClient struct {
-	Client   *http.Client
-	ApiKey   string
-	Payload  io.Reader
-	Response interface{}
-	Raw      *http.Response
+	client   *http.Client
+	apiKey   string
+	payLoad  io.Reader
+	response interface{}
+	raw      *http.Response
 }
 
 func NesClient() *NessieClient {
@@ -41,7 +41,7 @@ func NesClient() *NessieClient {
 }
 
 func (r *NessieClient) SetKey(key string) {
-	r.ApiKey = "key=" + key
+	r.apiKey = "key=" + key
 }
 
 func (r *NessieClient) Account() Accounts {
@@ -50,7 +50,7 @@ func (r *NessieClient) Account() Accounts {
 
 	fmt.Println(BaseUrl + "accounts?" + r.ApiKey)
 
-	resp, err := r.Client.Get(BaseUrl + "accounts?" + r.ApiKey)
+	resp, err := r.client.Get(BaseUrl + "accounts?" + r.apiKey)
 	if err != nil {
 		fmt.Println("error1: " + err.Error())
 	} else {
